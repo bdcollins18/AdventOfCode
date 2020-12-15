@@ -9,22 +9,6 @@ for bus in bus_with_id:
 	except:
 		pass
 
-def inverse(a, n): #from https://en.wikipedia.org/wiki/Extended_Euclidean_algorithm
-	t, t2 = 0, 1
-	r, r2 = n, a
-
-	while r2 != 0:
-		q = r // r2
-		t, t2 = t2, t - (q * t2)
-		r, r2 = r2, r - (q * r2)
-
-	if r > 1:
-		return None
-	if t < 0:
-		t += n
-
-	return t
-
 M = 1
 for bus in busses:
 	M *= bus[0]
@@ -32,7 +16,7 @@ for bus in busses:
 x = 0
 for bus in busses:
 	m = M // bus[0]
-	x += bus[1] * m * inverse(m,bus[0])
+	x += bus[1] * m * pow(m,-1,bus[0])
 
 print(x % M)
 
