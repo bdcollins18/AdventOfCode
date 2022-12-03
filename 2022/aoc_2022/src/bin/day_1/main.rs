@@ -13,7 +13,7 @@ use std::{
 };
 
 fn main() -> Result<()> {
-    let file = File::open("./src/day_1/input.txt")?;
+    let file = File::open("./src/bin/day_1/input.txt")?;
     let reader = BufReader::new(file);
     let lines_iterator = reader.lines();
 
