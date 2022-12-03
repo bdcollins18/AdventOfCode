@@ -8,8 +8,12 @@ name = "day_1"
 path = "src/bin/day_1/main.rs"
 
 [[bin]]
-name = "day_2"
-path = "src/bin/day_2/main.rs"
+name = "day_2_1"
+path = "src/bin/day_2/part_1.rs"
+
+[[bin]]
+name = "day_2_2"
+path = "src/bin/day_2/part_2.rs"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
