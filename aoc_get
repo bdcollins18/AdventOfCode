@@ -45,8 +45,8 @@ if len(sys.argv) != 3:
 year = int(sys.argv[1])
 day = int(sys.argv[2])
 
-YEAR_PATH = f'./{year}'
-DAY_PATH = f'./{year}/{day}'
+YEAR_PATH = f'./{year}/'
+DAY_PATH = f'./{year}/{day}/'
 
 PART_1_PATH = DAY_PATH + '/part_1'
 PART_2_PATH = DAY_PATH + '/part_2'
