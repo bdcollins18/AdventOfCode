@@ -1,7 +1,6 @@
 import os
 import requests
 from bs4 import BeautifulSoup
-from html2text import HTML2Text
 import unmarkd
 
 SESSION_TOKEN_ENV_VAR = 'ADVENT_SESSION_TOKEN'
