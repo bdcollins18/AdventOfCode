@@ -1,0 +1,118 @@
+#!/usr/bin/python3
+
+import aoc_util
+import sys
+import os
+import stat
+
+SOLUTION_TEMPLATE = """#!/usr/bin/python3
+
+import sys
+import os
+
+containing_folder = os.path.dirname(os.path.abspath(__file__))
+input_path = os.path.join(containing_folder, 'input')
+
+def parse_input():
+    with open(input_path, 'w+') as input_file:
+        pass
+
+def part_1():
+    input = parse_input()
+    print('The solution to part 1 is ""!')
+
+def part_2():
+    input = parse_input()
+    print('The solution to part 2 is ""!')
+
+if __name__ == '__main__':
+    if len(sys.argv) != 2:
+        print("usage: solution [1|2]")
+        exit(1)
+    if sys.argv[1] not in ['1', '2']:
+        print("usage: solution [1|2]")
+        exit(1)
+    if sys.argv[1] == '1':
+        part_1()
+    if sys.argv[1] == '2':
+        part_2()
+"""
+
+if len(sys.argv) != 3:
+    print('syntax: get {year} {day}')
+    exit(1)
+
+year = int(sys.argv[1])
+day = int(sys.argv[2])
+
+YEAR_PATH = f'./{year}'
+DAY_PATH = f'./{year}/{day}'
+
+PART_1_PATH = DAY_PATH + '/part_1'
+PART_2_PATH = DAY_PATH + '/part_2'
+INPUT_PATH = DAY_PATH + '/input'
+SOLUTION_PATH = DAY_PATH + '/solution'
+
+if (year < 2018) or (year > 2023):
+    print(f'Year: {year} should probably be in [2018,2023]')
+    exit(1)
+if (day < 1) or (day > 31):
+    print(f'Day: {day} should be in [1,31]')
+
+if not os.path.exists(YEAR_PATH):
+    print(f'{YEAR_PATH} does not exist, creating')
+    os.mkdir(YEAR_PATH)
+elif not os.path.isdir(YEAR_PATH):
+    print(f'{YEAR_PATH} already exists and is not a directory')
+    exit(1)
+
+if not os.path.exists(DAY_PATH):
+    print(f'{DAY_PATH} does not exist, creating')
+    os.mkdir(DAY_PATH)
+elif not os.path.isdir(DAY_PATH):
+    print(f'{DAY_PATH} already exists and is not a directory')
+    exit(1)
+
+part_1_exists = os.path.exists(PART_1_PATH)
+part_2_exists = os.path.exists(PART_2_PATH)
+input_exists = os.path.exists(INPUT_PATH)
+solution_exists = os.path.exists(SOLUTION_PATH)
+
+if not (part_1_exists and part_2_exists):
+    print(f'Fetching prompt for {year} Day {day}')
+    part_1_text, maybe_part_2_text = aoc_util.get_day_parts(year=year, day=day)
+
+    if not part_1_exists:
+        print(f'Creating {PART_1_PATH}')
+        with open(PART_1_PATH, 'w+') as f:
+            f.write(part_1_text)
+    else:
+        print(f'{PART_1_PATH} already exists')
+    
+    if not part_2_exists:
+        if maybe_part_2_text is not None:
+            print(f'Creating {PART_2_PATH}')
+            with open(PART_2_PATH, 'w+') as f:
+                f.write(maybe_part_2_text)
+        else:
+            print('Part 2 description not unlocked')
+    else:
+        print(f'{PART_2_PATH} already exists')
+else:
+    print(f'{PART_1_PATH} and {PART_2_PATH} already exist')
+
+if not input_exists:
+    print(f'Fetching input for {year} Day {day}')
+    input_text = aoc_util.get_input(year=year, day=day)
+    with open(INPUT_PATH, 'w+') as f:
+        f.write(input_text)
+else:
+    print(f'{INPUT_PATH} already exists')
+
+if not solution_exists:
+    print(f'Creating {SOLUTION_PATH} as executable')
+    with open(SOLUTION_PATH, 'w+') as f:
+       f.write(SOLUTION_TEMPLATE)
+    os.chmod(SOLUTION_PATH, os.stat(SOLUTION_PATH).st_mode | stat.S_IEXEC)
+else:
+    print(f'{SOLUTION_PATH} already exists')
