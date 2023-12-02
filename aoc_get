@@ -39,7 +39,7 @@ if __name__ == '__main__':
 """
 
 if len(sys.argv) != 3:
-    print('syntax: get {year} {day}')
+    print('syntax: aoc_get {year} {day}')
     exit(1)
 
 year = int(sys.argv[1])
@@ -48,10 +48,10 @@ day = int(sys.argv[2])
 YEAR_PATH = f'./{year}/'
 DAY_PATH = f'./{year}/{day}/'
 
-PART_1_PATH = DAY_PATH + '/part_1'
-PART_2_PATH = DAY_PATH + '/part_2'
-INPUT_PATH = DAY_PATH + '/input'
-SOLUTION_PATH = DAY_PATH + '/solution.py'
+PART_1_PATH = DAY_PATH + 'part_1'
+PART_2_PATH = DAY_PATH + 'part_2'
+INPUT_PATH = DAY_PATH + 'input'
+SOLUTION_PATH = DAY_PATH + 'solution.py'
 
 if (year < 2018) or (year > 2023):
     print(f'Year: {year} should probably be in [2018,2023]')
