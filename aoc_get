@@ -65,6 +65,8 @@ if not os.path.exists(YEAR_PATH):
 elif not os.path.isdir(YEAR_PATH):
     print(f'{YEAR_PATH} already exists and is not a directory')
     exit(1)
+else:
+    print(f'{YEAR_PATH} already exists')
 
 if not os.path.exists(DAY_PATH):
     print(f'{DAY_PATH} does not exist, creating')
@@ -72,6 +74,8 @@ if not os.path.exists(DAY_PATH):
 elif not os.path.isdir(DAY_PATH):
     print(f'{DAY_PATH} already exists and is not a directory')
     exit(1)
+else:
+    print(f'{DAY_PATH} already exists')
 
 part_1_exists = os.path.exists(PART_1_PATH)
 part_2_exists = os.path.exists(PART_2_PATH)
