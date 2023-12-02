@@ -108,6 +108,7 @@ else:
 if not input_exists:
     print(f'Fetching input for {year} Day {day}')
     input_text = aoc_util.get_input(year=year, day=day)
+    print(f'Creating {INPUT_PATH}')
     with open(INPUT_PATH, 'w+') as f:
         f.write(input_text)
 else:
