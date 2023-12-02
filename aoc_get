@@ -51,7 +51,7 @@ DAY_PATH = f'./{year}/{day}'
 PART_1_PATH = DAY_PATH + '/part_1'
 PART_2_PATH = DAY_PATH + '/part_2'
 INPUT_PATH = DAY_PATH + '/input'
-SOLUTION_PATH = DAY_PATH + '/solution'
+SOLUTION_PATH = DAY_PATH + '/solution.py'
 
 if (year < 2018) or (year > 2023):
     print(f'Year: {year} should probably be in [2018,2023]')

@@ -8,7 +8,7 @@ input_path = os.path.join(containing_folder, 'input')
 
 def parse_input():
     with open(input_path, 'w+') as input_file:
-        pass
+        return input_file.readlines
 
 def part_1():
     input = parse_input()
