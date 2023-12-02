@@ -58,6 +58,7 @@ if (year < 2018) or (year > 2023):
     exit(1)
 if (day < 1) or (day > 31):
     print(f'Day: {day} should be in [1,31]')
+    exit(1)
 
 if not os.path.exists(YEAR_PATH):
     print(f'{YEAR_PATH} does not exist, creating')

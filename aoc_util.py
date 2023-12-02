@@ -36,8 +36,6 @@ def get_day_parts(year, day):
     elif len(day_descs) > 2:
         page_error(page, 'Found more than two <article class="day-desc"> in <main>')
     
-    # html_to_md_converter = HTML2Text()
-    # html_to_md_converter.mark_code = True
     part_1 = unmarkd.unmark(day_descs[0].get_text())
     maybe_part_2 = unmarkd.unmark(day_descs[1].get_text()) if len(day_descs) == 2 else None
     return part_1, maybe_part_2
@@ -50,3 +48,25 @@ def get_input(year, day):
     url = INPUT_URL_TEMPLATE.format(year=year, day=day)
     page = str(requests.get(url, cookies={"session":SESSION_TOKEN}).content, encoding='utf8')
     return page
+
+ANSWER_URL_TEMPLATE = "https://adventofcode.com/{year}/day/{day}/answer"
+def submit_answer(year, day, part, answer):
+    url = ANSWER_URL_TEMPLATE.format(year=year, day=day)
+    data = {
+        'level': part,
+        'answer': answer
+    }
+    response = requests.post(url, data=data, cookies={"session":SESSION_TOKEN})
+
+    soup = BeautifulSoup(str(response.content, encoding='utf-8'), 'html.parser')
+    main_tags = soup.find_all('main')
+    if len(main_tags) == 0:
+        page_error(page, 'Missing <main> tag')
+    if len(main_tags) > 1:
+        page_error(page, 'Found more than one <main> tag')
+    main_tag = main_tags[0]
+
+    return unmarkd.unmark(main_tag.get_text())
+        
+    
+    
